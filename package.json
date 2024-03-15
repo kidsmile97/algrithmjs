@@ -1,0 +1,17 @@
+{
+  "name": "algrithmjs",
+  "version": "1.0.0",
+  "description": "algrithm in js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "kanglin",
+  "license": "ISC",
+  "devDependencies": {
+    "ject": "^1.1.0"
+  },
+  "dependencies": {
+    "jest": "^29.5.0"
+  }
+}
