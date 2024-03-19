@@ -44,8 +44,11 @@ dp(i, j) = dp(i-1, j-1) && str[i] == str[j]
 
 
 - 中心扩散法( 时间：O(n^2)，空间 O(1) )
-相当于动态规划的逆向方法，长度 1、2 的字符串是动态规划的边界情况，循环遍历的时候以这两种为回文中心直接向外拓展，寻找最长回文串即可
-
+相当于动态规划的同步方法，长度 1、2 的字符串是动态规划的边界情况，循环遍历的时候以这两种为回文中心直接向外拓展，而不是一步步按照回文串长度向外验证，寻找最长回文串即可
+存在问题
+1. 如何恰当得设计向外扩展，设计的方法是兼容 1、2 的情况还是不同情况分开设计
+2. 如何把向外扩展验证的结果恰当的返回并保存下来，怎么计算最合适
+3. 下面实现的方法抄袭了答案的实现，个人建议先分开设计更容易掌控边界情况，代码多了点不过逻辑会清晰一点，然后再考虑优化代码
 
 
 - Manacher 算法，一个复杂的 O(n) 算法，很难也很🐮
@@ -80,15 +83,28 @@ function longestPalindrome(s) {
 }
 
 /** 中心扩散法 */
-function longestPalindrome2(s) {
-  const n = s.length;
-  let target = s[0];
-  for (let i = 0; i < n - 1; i++) {
-    // 单字母中心 aba 扩展
-    
-    // 双字母中心 abba 扩展
+const expandAroundCenter = (s, left, right) => {
+  while(left >= 0 && right < s.length && s[left] === s[right]) {
+    left--;
+    right++;
   }
-  return target;
+  return right - left - 1;
+}
+function longestPalindrome2(s) {
+  let startIndex = 0;
+  let endIndex = 0;
+  for (let i = 0; i < s.length; i++) {
+    // 单字母中心 aba 扩展
+    const len1 = expandAroundCenter(s, i, i);
+    // 双字母中心 abba 扩展
+    const len2 = expandAroundCenter(s, i, i+1);
+    const maxLen = Math.max(len1, len2);
+    if (maxLen > endIndex - startIndex) {
+      startIndex = i - ((maxLen - 1) >> 1)
+      endIndex = i + (maxLen >> 1)
+    }
+  }
+  return s.substring(startIndex, endIndex + 1);
 }
 
 /** Manacher 算法 */
