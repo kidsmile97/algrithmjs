@@ -9,7 +9,16 @@
   "author": "kanglin",
   "license": "ISC",
   "devDependencies": {
-    "ject": "^1.1.0"
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-typescript": "^7.24.1",
+    "@types/jest": "^29.5.12",
+    "babel-jest": "^29.7.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "ject": "^1.1.0",
+    "prettier": "^3.2.5"
   },
   "dependencies": {
     "jest": "^29.5.0"

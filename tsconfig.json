@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "build",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "strict": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@class/*": ["class/*"],
+      "@structure/*": ["structure/*"],
+    },
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*",
+    "class/**/*",
+    "structure/**/*",
+    "typings.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
