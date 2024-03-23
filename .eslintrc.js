@@ -1,11 +1,14 @@
 module.exports = {
 	extends: ['plugin:prettier/recommended', 'prettier/@typescript-eslint'],
+	parserOptions: {
+		ecmaVersion: 2015,
+		sourceType: 'module',
+	},
 	rules: {
 		'prettier/prettier': 'error',
 		// 'import/no-unresolved': 'off',
 		// 'no-plusplus': 'off',
 		// 'import/prefer-default-export': 'off',
-		'import/no-extraneous-dependencies': 'warn',
 		// 'import/extensions': 'off',
 		'no-param-reassign': ['warn', { props: false }],
 		// 'no-underscore-dangle': 'off',

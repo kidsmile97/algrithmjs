@@ -28,20 +28,20 @@ res: "132219"
 
 /** 压栈法 */
 function removeKdigits(num, k) {
-  const stack = [];
-  for (const digit of num) {
-    while(stack.length > 0 && digit < stack[stack.length - 1] && k > 0) {
-      stack.pop();
-      k--;
-    }
-    stack.push(digit);
-  }
-  while(k > 0) {
-    stack.pop();
-    k--;
-  }
-  while(stack[0] === '0') {
-    stack.shift()
-  }
-  return stack.join('') || '0';
-};
+	const stack = [];
+	for (const digit of num) {
+		while (stack.length > 0 && digit < stack[stack.length - 1] && k > 0) {
+			stack.pop();
+			k--;
+		}
+		stack.push(digit);
+	}
+	while (k > 0) {
+		stack.pop();
+		k--;
+	}
+	while (stack[0] === '0') {
+		stack.shift();
+	}
+	return stack.join('') || '0';
+}
