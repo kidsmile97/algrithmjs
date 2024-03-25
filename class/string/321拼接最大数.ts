@@ -64,6 +64,7 @@ k = 5
 
  */
 
+/**  ============= wrong answer ================= */
 const __move = (t: number, type: 1 | 2, res: number[], record: Array<1 | 2>, leftNumber: number, k: number) => {
 	const stash: number[] = [];
 	const stashType = type == 1 ? 2 : 1;
@@ -117,6 +118,7 @@ function __maxNumber(nums1: number[], nums2: number[], k: number): number[] {
 
 	return res;
 }
+/**  ============= wrong answer ================= */
 
 /** 正确解法 */
 const getMaxNums = (nums: number[], k: number): number[] => {
