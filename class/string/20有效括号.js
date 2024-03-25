@@ -22,114 +22,137 @@
 
 /** 初次实现，代码细节有点辣鸡 */
 function __isValid(s) {
-  const stack = [];
-  for (let i = 0; i < s.length; i++) {
-    if (/[\[\(\{]/.test(s[i])) {
-      stack.push(s[i])
-    } else {
-      const target = stack.pop();
-      switch (s[i]) {
-        case ')':
-          if (target !== '(') return false;
-          break;
-        case '}':
-          if (target !== '{') return false;
-          break;
-        case ']':
-          if (target !== '[') return false;
-          break;
-        default:
-          break;
-      }
-    }
-  }
-  if (stack.length > 0) {
-    return false
-  }
-  return true;
-};
+	const stack = [];
+	for (let i = 0; i < s.length; i++) {
+		if (/[\[\(\{]/.test(s[i])) {
+			stack.push(s[i]);
+		} else {
+			const target = stack.pop();
+			switch (s[i]) {
+				case ')':
+					if (target !== '(') return false;
+					break;
+				case '}':
+					if (target !== '{') return false;
+					break;
+				case ']':
+					if (target !== '[') return false;
+					break;
+				default:
+					break;
+			}
+		}
+	}
+	if (stack.length > 0) {
+		return false;
+	}
+	return true;
+}
 
 /** 优化实现 */
 function isValid(s) {
-  const stack = [];
-  for (let i = 0; i < s.length; i++) {
-    switch (s[i]) {
-      case '(':
-        stack.push(')');
-        break;
-      case '[':
-        stack.push(']');
-        break;
-      case '{':
-        stack.push('}');
-        break;
-      default:
-        if (s[i] !== stack.pop()) return false;
-        break;
-    }
-  }
-  if (stack.length > 0) {
-    return false
-  }
-  return true;
-};
+	const stack = [];
+	for (let i = 0; i < s.length; i++) {
+		switch (s[i]) {
+			case '(':
+				stack.push(')');
+				break;
+			case '[':
+				stack.push(']');
+				break;
+			case '{':
+				stack.push('}');
+				break;
+			default:
+				if (s[i] !== stack.pop()) return false;
+				break;
+		}
+	}
+	if (stack.length > 0) {
+		return false;
+	}
+	return true;
+}
 
-/** 
- * 效率优化 
+/**
+ * 效率优化
  * 数组、字符串等，用迭代器迭代回比下标更快，因为下标迭代每次都还要检查下标是否溢出
  */
 
 // 可中断迭代器迭代
 function isValidII(s) {
-  const stack = [];
-  const iterator = s[Symbol.iterator]();
-  let itor = iterator.next();
-  while(!itor.done) {
-    switch (itor.value) {
-      case '(':
-        stack.push(')');
-        break;
-      case '[':
-        stack.push(']');
-        break;
-      case '{':
-        stack.push('}');
-        break;
-      default:
-        if (itor.value !== stack.pop()) return false;
-        break;
-    }
-    itor = iterator.next();
-  }
-  if (stack.length > 0) {
-    return false
-  }
-  return true;
+	const stack = [];
+	const iterator = s[Symbol.iterator]();
+	let itor = iterator.next();
+	while (!itor.done) {
+		switch (itor.value) {
+			case '(':
+				stack.push(')');
+				break;
+			case '[':
+				stack.push(']');
+				break;
+			case '{':
+				stack.push('}');
+				break;
+			default:
+				if (itor.value !== stack.pop()) return false;
+				break;
+		}
+		itor = iterator.next();
+	}
+	if (stack.length > 0) {
+		return false;
+	}
+	return true;
 }
 
 // 自带方法的迭代器迭代，神奇的是哪怕可能存在遍历浪费，反而更快，暂时没想懂
 function isValidIII(s) {
-  const stack = [];
-  let flag = true;
-  s.split('').forEach(char => {
-    switch (char) {
-      case '(':
-        stack.push(')');
-        break;
-      case '[':
-        stack.push(']');
-        break;
-      case '{':
-        stack.push('}');
-        break;
-      default:
-        if (char !== stack.pop()) flag = false;
-        break;
-    }
-  })
-  if (stack.length > 0) {
-    return false
-  }
-  return flag;
+	const stack = [];
+	let flag = true;
+	s.split('').forEach((char) => {
+		switch (char) {
+			case '(':
+				stack.push(')');
+				break;
+			case '[':
+				stack.push(']');
+				break;
+			case '{':
+				stack.push('}');
+				break;
+			default:
+				if (char !== stack.pop()) flag = false;
+				break;
+		}
+	});
+	if (stack.length > 0) {
+		return false;
+	}
+	return flag;
 }
 
+function isValidIIII(s) {
+	const stack = [];
+	for (const char of s) {
+		switch (char) {
+			case '(':
+				stack.push(')');
+				break;
+			case '[':
+				stack.push(']');
+				break;
+			case '{':
+				stack.push('}');
+				break;
+			default:
+				if (char !== stack.pop()) return false;
+				break;
+		}
+	}
+	if (stack.length > 0) {
+		return false;
+	}
+	return true;
+}
