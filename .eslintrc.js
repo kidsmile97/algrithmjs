@@ -1,5 +1,6 @@
 module.exports = {
-	extends: ['plugin:prettier/recommended', 'prettier/@typescript-eslint'],
+	parser: '@typescript-eslint/parser',
+	extends: ['plugin:prettier/recommended'],
 	parserOptions: {
 		ecmaVersion: 2015,
 		sourceType: 'module',
@@ -16,11 +17,11 @@ module.exports = {
 		'default-case': 'warn',
 		'max-len': ['warn', { code: 180 }],
 		'no-unused-vars': 'warn',
-		// '@typescript-eslint/no-use-before-define': 'off',
+		'@typescript-eslint/no-use-before-define': 'off',
 		'no-restricted-globals': 'warn',
 		'no-unused-expressions': 'warn',
-		// '@typescript-eslint/no-loop-func': 'off',
-		// '@typescript-eslint/no-redeclare': 'off',
-		// '@typescript-eslint/no-shadow': 'off',
+		'@typescript-eslint/no-loop-func': 'off',
+		'@typescript-eslint/no-redeclare': 'off',
+		'@typescript-eslint/no-shadow': 'off',
 	},
 };
