@@ -32,25 +32,19 @@ boyer-moore 多数投票算法
  */
 
 module.exports = (arr) => {
-  let count = 0;
-  let mode = 0;
+	let count = 0;
+	let mode = 0;
 
-  arr.forEach(item => {
-    if (count == 0) {
-      mode = item;
-    }
-    if (mode == item) {
-      count++
-    } else {
-      count--
-    }
-  })
+	arr.forEach((item) => {
+		if (count == 0) {
+			mode = item;
+		}
+		if (mode == item) {
+			count++;
+		} else {
+			count--;
+		}
+	});
 
-  return mode;
-}
-
-
-
-
-
-
+	return mode;
+};
