@@ -15,7 +15,7 @@ module.exports = {
 		// 'no-underscore-dangle': 'off',
 		'no-shadow': 'warn',
 		'default-case': 'warn',
-		'max-len': ['warn', { code: 180 }],
+		'max-len': ['error', { code: 120 }],
 		'no-unused-vars': 'warn',
 		'@typescript-eslint/no-use-before-define': 'off',
 		'no-restricted-globals': 'warn',

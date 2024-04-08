@@ -4,7 +4,7 @@ module.exports = {
   "useTabs": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "printWidth": 150,
+  "printWidth": 120,
   "overrides": [
     {
       "files": ".prettierrc.js",
