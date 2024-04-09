@@ -57,7 +57,9 @@ function movesToStamp(stamp: string, target: string): number[] {
 	// 标记相应位置是否已刻印'?'
 	const targetRes = new Array(target.length).fill(false);
 	// 记录每个子串剩余未刻印内容
-	const indexStack: Array<Set<number> | null> = new Array(target.length - stamp.length + 1).fill(0).map(() => new Set<number>());
+	const indexStack: Array<Set<number> | null> = new Array(target.length - stamp.length + 1)
+		.fill(0)
+		.map(() => new Set<number>());
 
 	for (let i = 0; i <= target.length - stamp.length; i++) {
 		for (let j = 0; j < stamp.length; j++) {
