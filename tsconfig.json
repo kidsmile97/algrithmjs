@@ -15,6 +15,7 @@
       "@/*": ["src/*"],
       "@class/*": ["class/*"],
       "@structure/*": ["structure/*"],
+      "@utilClass/*": ["utilClass/*"]
     },
     "allowSyntheticDefaultImports": true
   },
@@ -22,6 +23,7 @@
     "src/**/*",
     "class/**/*",
     "structure/**/*",
+    "utilClass/**/*",
     "typings.d.ts"
   ],
   "exclude": [
