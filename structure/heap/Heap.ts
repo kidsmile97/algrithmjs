@@ -15,6 +15,10 @@ class Heap<T = number> extends Comparator<T> {
 		return this._size;
 	}
 
+	get data() {
+		return this._data.slice(0, this._size);
+	}
+
 	private __swap(i: number, j: number) {
 		const temp = this._data[i];
 		this._data[i] = this._data[j];
