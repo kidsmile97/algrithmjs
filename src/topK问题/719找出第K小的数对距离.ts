@@ -43,7 +43,7 @@ export function _smallestDistancePair(nums: number[], k: number): number {
 }
 
 /** 不能使用暴力解法，无法通过时间和空间复杂度要求 */
-function __smallestDistancePair(nums: number[], k: number): number {
+export function __smallestDistancePair(nums: number[], k: number): number {
 	const res: number[] = [];
 	for (let i = 0; i < nums.length - 1; i++) {
 		for (let j = i + 1; j < nums.length; j++) {
@@ -55,7 +55,7 @@ function __smallestDistancePair(nums: number[], k: number): number {
 }
 /** 不能使用暴力解法，无法通过时间和空间复杂度要求测试 */
 
-/** 二分查找定位 */
+/** 二分查找定位 lower_bound */
 function smallestDistancePair(nums: number[], k: number): number {
 	nums.sort((a, b) => a - b);
 
@@ -87,11 +87,50 @@ function smallestDistancePair(nums: number[], k: number): number {
 		if (cnt < k) {
 			left = mid + 1;
 		} else {
+			// 这里之所以能忽略 mid ，是循环的设计取了巧，先把 mid 排除出去，计算左边
+			// 假设 k 就是 mid，那在后面循环过程中会一直走 cnt < k 的流程
+			// 直到最后一次循环，left = right，cnt < k，此时 left + 1 正好等于 mid，又把 mid 拉了回来
 			right = mid - 1;
 		}
 	}
 
 	return left;
+}
+
+/** 二分查找定位的理解 upper_bound */
+export function d_smallestDistancePair(nums: number[], k: number): number {
+	nums.sort((a, b) => a - b);
+
+	let left = 0;
+	let right = nums[nums.length - 1] - nums[0];
+
+	// left \ right 在这里既是边界下标也是数值
+	while (left < right) {
+		const mid = (right + left) >> 1;
+		// 计算距离小于 mid 的数对个数
+		let cnt = 0;
+		/** 一次遍历即可统计距离小于等于 mid 的数对量 */
+		for (let i = 0, j = 1; j < nums.length; j++) {
+			while (nums[j] - nums[i] > mid) {
+				i++;
+			}
+			cnt += j - i;
+		}
+		if (cnt < k) {
+			/**
+			 * k 在右边，维护左边界。
+			 * cnt 是距离小于等于 mid 的量，此时 cnt 仍小于 k，则 k 肯定不包括 mid，直接取 mid 的右边
+			 */
+			left = mid + 1;
+		} else {
+			/**
+			 * cnt >= k，k 在左边，后续循环应包括 mid
+			 */
+			right = mid;
+		}
+	}
+
+	return right;
 }
 
 export default smallestDistancePair;
