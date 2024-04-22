@@ -24,10 +24,10 @@
     "class/**/*",
     "structure/**/*",
     "utilClass/**/*",
+    "acm/Huawei/**/*",
     "typings.d.ts"
   ],
   "exclude": [
     "node_modules/",
-    "acm/Huawei/**/*"
   ]
 }
