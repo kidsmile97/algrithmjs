@@ -56,55 +56,55 @@ dp(i, j) = dp(i-1, j-1) && str[i] == str[j]
 
 /** 动态规划 */
 function longestPalindrome(s) {
-  // 使用一个 n * n 矩阵保存每次验证结果
-  const n = s.length;
-  const res = new Array(n).fill(0).map(() => new Array(n).fill(false));
-  let target = s[0];
-  // 所有单字符都是回文串
-  for (let i = 0; i < n - 1; i++) {
-    res[i][i] = true;
-    res[i][i+1] = s[i] === s[i+1]
-    if (res[i][i+1]) {
-      target = s.substring(i, i+2)
-    }
-  }
-  res[n-1][n-1] = true;
-  // 从长度 3 的子串开始
-  for(let len = 3; len <= n; len++) {
-    for(let j = 0; j <= n - len; j++) {
-      const lastIndex = j+len - 1;
-      res[j][lastIndex] = res[j+1][lastIndex-1] && s[j] === s[lastIndex]
-      if (res[j][lastIndex] && len > target.length) {
-        target = s.substring(j, lastIndex + 1)
-      }
-    }
-  }
-  return target;
+	// 使用一个 n * n 矩阵保存每次验证结果
+	const n = s.length;
+	const res = new Array(n).fill(0).map(() => new Array(n).fill(false));
+	let target = s[0];
+	// 所有单字符都是回文串
+	for (let i = 0; i < n - 1; i++) {
+		res[i][i] = true;
+		res[i][i + 1] = s[i] === s[i + 1];
+		if (res[i][i + 1]) {
+			target = s.substring(i, i + 2);
+		}
+	}
+	res[n - 1][n - 1] = true;
+	// 从长度 3 的子串开始
+	for (let len = 3; len <= n; len++) {
+		for (let j = 0; j <= n - len; j++) {
+			const lastIndex = j + len - 1;
+			res[j][lastIndex] = res[j + 1][lastIndex - 1] && s[j] === s[lastIndex];
+			if (res[j][lastIndex] && len > target.length) {
+				target = s.substring(j, lastIndex + 1);
+			}
+		}
+	}
+	return target;
 }
 
 /** 中心扩散法 */
 const expandAroundCenter = (s, left, right) => {
-  while(left >= 0 && right < s.length && s[left] === s[right]) {
-    left--;
-    right++;
-  }
-  return right - left - 1;
-}
+	while (left >= 0 && right < s.length && s[left] === s[right]) {
+		left--;
+		right++;
+	}
+	return right - left - 1;
+};
 function longestPalindrome2(s) {
-  let startIndex = 0;
-  let endIndex = 0;
-  for (let i = 0; i < s.length; i++) {
-    // 单字母中心 aba 扩展
-    const len1 = expandAroundCenter(s, i, i);
-    // 双字母中心 abba 扩展
-    const len2 = expandAroundCenter(s, i, i+1);
-    const maxLen = Math.max(len1, len2);
-    if (maxLen > endIndex - startIndex) {
-      startIndex = i - ((maxLen - 1) >> 1)
-      endIndex = i + (maxLen >> 1)
-    }
-  }
-  return s.substring(startIndex, endIndex + 1);
+	let startIndex = 0;
+	let endIndex = 0;
+	for (let i = 0; i < s.length; i++) {
+		// 单字母中心 aba 扩展
+		const len1 = expandAroundCenter(s, i, i);
+		// 双字母中心 abba 扩展
+		const len2 = expandAroundCenter(s, i, i + 1);
+		const maxLen = Math.max(len1, len2);
+		if (maxLen > endIndex - startIndex) {
+			startIndex = i - ((maxLen - 1) >> 1);
+			endIndex = i + (maxLen >> 1);
+		}
+	}
+	return s.substring(startIndex, endIndex + 1);
 }
 
 /** Manacher 算法 */
