@@ -34,10 +34,10 @@ function distanceTraveled(mainTank: number, additionalTank: number): number {
 }
 
 /** 数学方程
- * 可从副油箱获得油量 k = Math.floor(mainTank / 4) || additionalTank
+ * 可从副油箱获得油量 k = Math.floor((mainTank - 5) / 4 + 1) || additionalTank
  */
 export function _distanceTraveled(mainTank: number, additionalTank: number): number {
-	return (Math.min(Math.floor(mainTank / 4), additionalTank) + mainTank) * 10;
+	return (Math.min(Math.floor((mainTank - 1) / 4), additionalTank) + mainTank) * 10;
 }
 
 export default distanceTraveled;
