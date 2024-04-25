@@ -41,7 +41,7 @@ function _inorderTraversal(root) {
  * @param {*} root
  * @returns
  */
-function __inorderTraversal(root) {
+function inorderTraversal(root) {
 	let result = [];
 	const stack = [];
 	let curNode = root;
@@ -56,3 +56,5 @@ function __inorderTraversal(root) {
 	}
 	return result;
 }
+
+export default inorderTraversal;
