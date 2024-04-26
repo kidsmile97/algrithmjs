@@ -50,6 +50,11 @@ export function postOrderTraversal(root: TreeNode | null): number[] {
 			curNode = stack.pop() as TreeNode;
 			if (curNode.right == null || curNode.right == preNode) {
 				result.push(curNode.val);
+				/**
+				 * 由于后序遍历是 左右根 的顺序，所以直接记录当前处理节点
+				 * 然后下一次出栈的就是该节点的父节点，然后就会出现在父节点的判断上面
+				 * 如果该节点是父节点的右子树，则说明父节点左右子树都遍历完毕了
+				 */
 				preNode = curNode;
 				curNode = null;
 			} else {
