@@ -7,6 +7,9 @@
 
 给你一个字符串 s，如果它是 回文串 ，返回 true ；否则，返回 false 。
 
+\w 字母、数字、下划线 = [a-zA-Z0-9_]
+\W 非字母、数字、下划线 = [^A-Za-z0-9_]
+
  */
 
 function isPalindrome(s: string): boolean {
