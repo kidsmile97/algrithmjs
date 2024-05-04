@@ -1,6 +1,7 @@
 import findKthLargest from './215数组中的第K个最大元素';
 import kSmallestPairs, { _kSmallestPairs } from './373查找和最小的K对数字';
 import { _smallestDistancePair, d_smallestDistancePair } from './719找出第K小的数对距离';
+import { binarySearch, bs2 } from './topk';
 
 test('215 数组中的第K个最大元素', () => {
 	expect(findKthLargest([3, 2, 1, 5, 6, 4], 2)).toBe(5);
@@ -31,4 +32,9 @@ test('719. 找出第 K 小的数对距离', () => {
 	expect(d_smallestDistancePair([1, 3, 1], 1)).toBe(0);
 	expect(d_smallestDistancePair([1, 1, 1], 2)).toBe(0);
 	expect(d_smallestDistancePair([1, 6, 1], 3)).toBe(5);
+});
+
+test('topk 问题', () => {
+	expect(binarySearch([5, 7, 7, 8, 8, 10], 8)).toBe(3);
+	expect(bs2([5, 7, 7, 8, 8, 10], 8)).toBe(2);
 });
