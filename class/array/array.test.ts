@@ -1,4 +1,5 @@
 import SnapshotArray from './1146快照数组';
+import decrypt from './1652.拆炸弹';
 import rotate from './189轮转数组';
 
 test('218. 天际线问题', () => {
@@ -22,4 +23,8 @@ test('218. 天际线问题 2', () => {
 test('189. 轮转数组', () => {
 	expect(rotate([1, 2, 3, 4, 5, 6, 7], 3)).toEqual([5, 6, 7, 1, 2, 3, 4]);
 	expect(rotate([1, 2, 3, 4], 2)).toEqual([3, 4, 1, 2]);
+});
+
+test('1652. 拆炸弹', () => {
+	expect(decrypt([2, 4, 9, 3], -2)).toEqual([12, 5, 6, 13]);
 });
