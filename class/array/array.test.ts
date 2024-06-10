@@ -1,6 +1,7 @@
 import SnapshotArray from './1146快照数组';
 import decrypt from './1652.拆炸弹';
 import rotate from './189轮转数组';
+import countBattleships from './419.甲板上的战舰';
 
 test('218. 天际线问题', () => {
 	const snapshotArr = new SnapshotArray(3);
@@ -27,4 +28,14 @@ test('189. 轮转数组', () => {
 
 test('1652. 拆炸弹', () => {
 	expect(decrypt([2, 4, 9, 3], -2)).toEqual([12, 5, 6, 13]);
+});
+
+test('419. 甲板上的战舰', () => {
+	expect(
+		countBattleships([
+			['X', '.', '.', 'X'],
+			['.', '.', '.', 'X'],
+			['.', '.', '.', 'X'],
+		]),
+	).toBe(2);
 });
